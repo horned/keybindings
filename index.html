@@ -36,6 +36,7 @@
             class="menu menu-sm dropdown-content mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
           >
             <li><a href="#neovim">Neovim</a></li>
+            <li><a href="#tmux">tmux</a></li>
             <li><a href="#resources">Resources</a></li>
           </ul>
         </div>
@@ -44,6 +45,7 @@
       <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal px-1">
           <li><a class="font-medium" href="#neovim">Neovim</a></li>
+          <li><a class="font-medium" href="#tmux">tmux</a></li>
           <li><a class="font-medium" href="#resources">Resources</a></li>
         </ul>
       </div>
@@ -325,6 +327,108 @@
           </div>
         </div>
       </section>
+
+      <section id="tmux" class="hero rounded-box bg-gradient-to-r from-secondary/10 to-accent/10 p-6">
+        <div class="hero-content flex-col items-start gap-6 lg:flex-row">
+          <div class="max-w-xl">
+            <h1 class="text-4xl font-bold">tmux Essentials</h1>
+            <p class="mt-4 text-lg opacity-80">Terminal multiplexing shortcuts for faster session, window, and pane management. Use the buttons below to jump to the area you need.</p>
+            <div class="mt-6 flex flex-wrap gap-2">
+              <a href="#tmux-sessions" class="btn btn-sm btn-secondary">Sessions</a>
+              <a href="#tmux-windows" class="btn btn-sm btn-accent">Windows</a>
+              <a href="#tmux-panes" class="btn btn-sm btn-warning">Panes</a>
+              <a href="#tmux-copy" class="btn btn-sm btn-info">Copy Mode</a>
+            </div>
+          </div>
+          <div class="card w-full max-w-sm shrink-0 bg-base-100 shadow-lg">
+            <div class="card-body">
+              <h2 class="card-title">Tips</h2>
+              <ul class="list-disc space-y-2 pl-5 text-sm opacity-80">
+                <li>Prefix defaults to <code>Ctrl+b</code>; press it once before the key hints below.</li>
+                <li>Use <code>tmux list-keys</code> to confirm custom bindings in your config.</li>
+                <li><code>set -g mouse on</code> enables click-to-select panes in modern tmux.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tmux-shortcuts" class="scroll-mt-24">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl font-semibold">tmux Shortcuts</h2>
+          <span class="badge badge-neutral">Prefix: <code>Ctrl+b</code></span>
+        </div>
+        <p class="mt-2 text-sm opacity-80">Commands below assume the prefix; shell commands are noted explicitly.</p>
+        <div class="grid gap-4 pt-4 md:grid-cols-2">
+          <div id="tmux-sessions" class="card bg-base-100 shadow">
+            <div class="card-body">
+              <h3 class="card-title">Sessions</h3>
+              <div class="overflow-x-auto">
+                <table class="table">
+                  <tbody>
+                    <tr><td><code>tmux new -s name</code></td><td>Create a session named <em>name</em></td></tr>
+                    <tr><td><code>tmux ls</code></td><td>List existing sessions</td></tr>
+                    <tr><td><code>tmux attach -t name</code></td><td>Attach to session <em>name</em></td></tr>
+                    <tr><td><code>Ctrl+b</code> <code>d</code></td><td>Detach from current session</td></tr>
+                    <tr><td><code>Ctrl+b</code> <code>$</code></td><td>Rename current session</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div id="tmux-windows" class="card bg-base-100 shadow">
+            <div class="card-body">
+              <h3 class="card-title">Windows</h3>
+              <div class="overflow-x-auto">
+                <table class="table">
+                  <tbody>
+                    <tr><td><code>Ctrl+b</code> <code>c</code></td><td>Create a new window</td></tr>
+                    <tr><td><code>Ctrl+b</code> <code>,</code></td><td>Rename the active window</td></tr>
+                    <tr><td><code>Ctrl+b</code> <code>n</code> / <code>p</code></td><td>Next / previous window</td></tr>
+                    <tr><td><code>Ctrl+b</code> <code>w</code></td><td>Choose window from list</td></tr>
+                    <tr><td><code>Ctrl+b</code> <code>&amp;</code></td><td>Kill the active window (confirm)</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div id="tmux-panes" class="card bg-base-100 shadow">
+            <div class="card-body">
+              <h3 class="card-title">Panes</h3>
+              <div class="overflow-x-auto">
+                <table class="table">
+                  <tbody>
+                    <tr><td><code>Ctrl+b</code> <code>"</code> / <code>%</code></td><td>Split horizontal / vertical</td></tr>
+                    <tr><td><code>Ctrl+b</code> <code>Arrow keys</code></td><td>Move focus between panes</td></tr>
+                    <tr><td><code>Ctrl+b</code> <code>o</code></td><td>Cycle to next pane</td></tr>
+                    <tr><td><code>Ctrl+b</code> <code>{</code> / <code>}</code></td><td>Swap pane with previous / next</td></tr>
+                    <tr><td><code>Ctrl+b</code> <code>x</code></td><td>Close the active pane (confirm)</td></tr>
+                    <tr><td><code>Ctrl+b</code> <code>z</code></td><td>Toggle pane zoom</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div id="tmux-copy" class="card bg-base-100 shadow">
+            <div class="card-body">
+              <h3 class="card-title">Copy Mode</h3>
+              <div class="overflow-x-auto">
+                <table class="table">
+                  <tbody>
+                    <tr><td><code>Ctrl+b</code> <code>[</code></td><td>Enter copy mode</td></tr>
+                    <tr><td><code>Space</code></td><td>Begin selecting text</td></tr>
+                    <tr><td><code>Enter</code></td><td>Copy selection to tmux buffer</td></tr>
+                    <tr><td><code>q</code></td><td>Exit copy mode</td></tr>
+                    <tr><td><code>Ctrl+b</code> <code>]</code></td><td>Paste most recent buffer</td></tr>
+                    <tr><td><code>PgUp</code> / <code>PgDn</code></td><td>Scroll history while in copy mode</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </main>
 
     <footer id="resources" class="bg-base-100 py-10">
