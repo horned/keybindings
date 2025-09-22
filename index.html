@@ -36,6 +36,7 @@
             class="menu menu-sm dropdown-content mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
           >
             <li><a href="#neovim">Neovim</a></li>
+            <li><a href="#lunarvim">LunarVim</a></li>
             <li><a href="#tmux">tmux</a></li>
             <li><a href="#resources">Resources</a></li>
           </ul>
@@ -45,6 +46,7 @@
       <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal px-1">
           <li><a class="font-medium" href="#neovim">Neovim</a></li>
+          <li><a class="font-medium" href="#lunarvim">LunarVim</a></li>
           <li><a class="font-medium" href="#tmux">tmux</a></li>
           <li><a class="font-medium" href="#resources">Resources</a></li>
         </ul>
@@ -320,6 +322,108 @@
                     <tr><td><code>q</code><em>letter</em></td><td>Start recording macro</td></tr>
                     <tr><td><code>q</code></td><td>Stop recording</td></tr>
                     <tr><td><code>@</code><em>letter</em> / <code>@@</code></td><td>Play macro / repeat last</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="lunarvim" class="hero rounded-box bg-gradient-to-r from-info/10 to-success/10 p-6">
+        <div class="hero-content flex-col items-start gap-6 lg:flex-row">
+          <div class="max-w-xl">
+            <h1 class="text-4xl font-bold">LunarVim Essentials</h1>
+            <p class="mt-4 text-lg opacity-80">Space is the leader key. Tap it once to reveal WhichKey hints, then follow the prompts below to drive Telescope, LSP, and project helpers.</p>
+            <div class="mt-6 flex flex-wrap gap-2">
+              <a href="#lunarvim-find" class="btn btn-sm btn-info">Find &amp; Explore</a>
+              <a href="#lunarvim-lsp" class="btn btn-sm btn-success">LSP &amp; Diagnostics</a>
+              <a href="#lunarvim-completion" class="btn btn-sm btn-primary">Completion</a>
+              <a href="#lunarvim-tools" class="btn btn-sm btn-secondary">Commands &amp; Tools</a>
+            </div>
+          </div>
+          <div class="card w-full max-w-sm shrink-0 bg-base-100 shadow-lg">
+            <div class="card-body">
+              <h2 class="card-title">Tips</h2>
+              <ul class="list-disc space-y-2 pl-5 text-sm opacity-80">
+                <li>The default leader is <code>Space</code>; double-tap to cancel a pending combo.</li>
+                <li><code>:LvimSyncPlugins</code> or <code>&lt;leader&gt;lI</code> installs missing plugins after config changes.</li>
+                <li>Use <code>&lt;leader&gt;?</code> to reopen WhichKey if you forget a mapping.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="lunarvim-shortcuts" class="scroll-mt-24">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl font-semibold">LunarVim Shortcuts</h2>
+          <span class="badge badge-neutral">Leader: <code>Space</code></span>
+        </div>
+        <p class="mt-2 text-sm opacity-80">Key chords below follow the default LunarVim profile; adjust if you override mappings in <code>~/.config/lvim/config.lua</code>.</p>
+        <div class="grid gap-4 pt-4 md:grid-cols-2">
+          <div id="lunarvim-find" class="card bg-base-100 shadow">
+            <div class="card-body">
+              <h3 class="card-title">Find &amp; Explore</h3>
+              <div class="overflow-x-auto">
+                <table class="table">
+                  <tbody>
+                    <tr><td><code>&lt;leader&gt;ff</code></td><td>Telescope find files</td></tr>
+                    <tr><td><code>&lt;leader&gt;fg</code></td><td>Live grep workspace</td></tr>
+                    <tr><td><code>&lt;leader&gt;fb</code></td><td>Jump to open buffer</td></tr>
+                    <tr><td><code>&lt;leader&gt;fh</code></td><td>Search Neovim help tags</td></tr>
+                    <tr><td><code>&lt;leader&gt;e</code></td><td>Toggle file explorer (NvimTree)</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div id="lunarvim-lsp" class="card bg-base-100 shadow">
+            <div class="card-body">
+              <h3 class="card-title">LSP &amp; Diagnostics</h3>
+              <div class="overflow-x-auto">
+                <table class="table">
+                  <tbody>
+                    <tr><td><code>gd</code></td><td>Go to definition</td></tr>
+                    <tr><td><code>gr</code></td><td>List references via Telescope</td></tr>
+                    <tr><td><code>&lt;leader&gt;la</code></td><td>Code actions menu</td></tr>
+                    <tr><td><code>&lt;leader&gt;lr</code></td><td>Rename symbol</td></tr>
+                    <tr><td><code>&lt;leader&gt;lf</code></td><td>Format current buffer</td></tr>
+                    <tr><td><code>[d</code> / <code>]d</code></td><td>Previous / next diagnostic</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div id="lunarvim-completion" class="card bg-base-100 shadow">
+            <div class="card-body">
+              <h3 class="card-title">Completion</h3>
+              <div class="overflow-x-auto">
+                <table class="table">
+                  <tbody>
+                    <tr><td><code>Ctrl+Space</code></td><td>Trigger completion menu</td></tr>
+                    <tr><td><code>Tab</code> / <code>Shift+Tab</code></td><td>Cycle items forward / back</td></tr>
+                    <tr><td><code>Enter</code> / <code>Ctrl+y</code></td><td>Confirm selection</td></tr>
+                    <tr><td><code>Ctrl+e</code></td><td>Abort completion</td></tr>
+                    <tr><td><code>&lt;leader&gt;ls</code></td><td>Toggle signature help popup</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div id="lunarvim-tools" class="card bg-base-100 shadow">
+            <div class="card-body">
+              <h3 class="card-title">Commands &amp; Tools</h3>
+              <div class="overflow-x-auto">
+                <table class="table">
+                  <tbody>
+                    <tr><td><code>&lt;leader&gt;tt</code></td><td>Toggle floating terminal</td></tr>
+                    <tr><td><code>&lt;leader&gt;pp</code></td><td>Project picker</td></tr>
+                    <tr><td><code>&lt;leader&gt;bd</code></td><td>Close current buffer</td></tr>
+                    <tr><td><code>&lt;leader&gt;ww</code></td><td>Save file</td></tr>
+                    <tr><td><code>&lt;leader&gt;qq</code></td><td>Quit LunarVim session</td></tr>
+                    <tr><td><code>&lt;leader&gt;lI</code></td><td>Install configured plugins</td></tr>
+                    <tr><td><code>&lt;leader&gt;lR</code></td><td>Reload <code>config.lua</code></td></tr>
                   </tbody>
                 </table>
               </div>
