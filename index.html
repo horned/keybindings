@@ -10,8 +10,6 @@
       type="text/css"
     />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- Production version -->
-    <script src="https://unpkg.com/lucide@latest"></script>
   </head>
   <body class="min-h-screen bg-base-200 text-base-content transition-colors">
     <header class="navbar bg-base-100/80 backdrop-blur sticky top-0 z-50">
@@ -48,17 +46,6 @@
           <li><a class="font-medium" href="#neovim">Neovim</a></li>
           <li><a class="font-medium" href="#resources">Resources</a></li>
         </ul>
-      </div>
-      <div class="navbar-end gap-2">
-        <label class="label hidden text-xs font-semibold uppercase tracking-wide md:block">
-          Theme
-        </label>
-        <label class="swap swap-rotate">
-          <span class="sr-only">Theme toggle</span>
-          <input id="theme-toggle" type="checkbox" aria-label="Theme toggle" />
-          <i class="swap-on h-6 w-6 text-current" data-lucide="moon-star" aria-hidden="true"></i>
-          <i class="swap-off h-6 w-6 text-current" data-lucide="sun" aria-hidden="true"></i>
-        </label>
       </div>
     </header>
 
@@ -363,72 +350,5 @@
       </div>
     </footer>
 
-    <script>
-      (function () {
-        const root = document.documentElement;
-        const body = document.body;
-        const toggle = document.getElementById('theme-toggle');
-        const prefersDark = typeof window.matchMedia === 'function'
-          ? window.matchMedia('(prefers-color-scheme: dark)')
-          : null;
-        const STORAGE_KEY = 'kb-theme';
-        const THEMES = { light: 'cupcake', dark: 'forest' };
-
-        function normalize(theme) {
-          return theme === 'dark' ? 'dark' : 'light';
-        }
-
-        function applyTheme(theme) {
-          const mode = normalize(theme);
-          const daisyTheme = THEMES[mode];
-          root.setAttribute('data-theme', daisyTheme);
-          body.classList.add('bg-base-200');
-          if (toggle) {
-            toggle.checked = mode === 'dark';
-            toggle.setAttribute('aria-label', mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
-          }
-        }
-
-        function syncWithSystemPreference(event) {
-          if (!prefersDark) {
-            return;
-          }
-          const matches = typeof event?.matches === 'boolean' ? event.matches : prefersDark.matches;
-          if (!localStorage.getItem(STORAGE_KEY)) {
-            applyTheme(matches ? 'dark' : 'light');
-          }
-        }
-
-        function initialTheme() {
-          const stored = localStorage.getItem(STORAGE_KEY);
-          if (stored) {
-            return normalize(stored);
-          }
-          return prefersDark && prefersDark.matches ? 'dark' : 'light';
-        }
-
-        applyTheme(initialTheme());
-
-        if (toggle) {
-          toggle.addEventListener('change', () => {
-            const mode = toggle.checked ? 'dark' : 'light';
-            applyTheme(mode);
-            localStorage.setItem(STORAGE_KEY, mode);
-          });
-        }
-
-        if (prefersDark) {
-          if (typeof prefersDark.addEventListener === 'function') {
-            prefersDark.addEventListener('change', syncWithSystemPreference);
-          } else if (typeof prefersDark.addListener === 'function') {
-            prefersDark.addListener(syncWithSystemPreference);
-          }
-        }
-
-        if (window.lucide && typeof window.lucide.createIcons === 'function') {
-          window.lucide.createIcons();
-        }
-      })();
-    </script>
   </body>
 </html>
