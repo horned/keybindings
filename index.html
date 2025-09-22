@@ -10,6 +10,8 @@
       type="text/css"
     />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Production version -->
+    <script src="https://unpkg.com/lucide@latest"></script>
   </head>
   <body class="min-h-screen bg-base-200 text-base-content transition-colors">
     <header class="navbar bg-base-100/80 backdrop-blur sticky top-0 z-50">
@@ -52,17 +54,10 @@
           Theme
         </label>
         <label class="swap swap-rotate">
-          <input id="theme-toggle" type="checkbox" class="theme-controller" />
-          <svg class="swap-on h-6 w-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path
-              d="M5.64 17.66A9 9 0 0012 21a9 9 0 006.36-3.34A9 9 0 006.34 5.64 9 9 0 005.64 17.66z"
-            />
-          </svg>
-          <svg class="swap-off h-6 w-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path
-              d="M12 4.354a1 1 0 011-1h0a1 1 0 011 1V6a1 1 0 01-1 1h0a1 1 0 01-1-1zM12 17a1 1 0 011-1h0a1 1 0 011 1v1.646a1 1 0 01-1 1h0a1 1 0 01-1-1zM7.05 6.464a1 1 0 011.414 0l.879.88a1 1 0 010 1.414l-.88.879a1 1 0 01-1.414-1.414l.88-.88zM15.657 15.657a1 1 0 011.415 0l.879.88a1 1 0 010 1.414l-.88.879a1 1 0 01-1.414-1.414l.88-.88zM4.354 12a1 1 0 011-1H7a1 1 0 011 1h0a1 1 0 01-1 1H5.354a1 1 0 01-1-1zM17 11a1 1 0 011-1h1.646a1 1 0 011 1h0a1 1 0 01-1 1H18a1 1 0 01-1-1zM7.05 17.536a1 1 0 011.414 0l.879.879a1 1 0 01-1.414 1.415l-.88-.88a1 1 0 010-1.414zM15.657 8.343a1 1 0 011.415 0l.879.88a1 1 0 01-1.414 1.414l-.88-.88a1 1 0 010-1.414z"
-            />
-          </svg>
+          <span class="sr-only">Theme toggle</span>
+          <input id="theme-toggle" type="checkbox" aria-label="Theme toggle" />
+          <i class="swap-on h-6 w-6 text-current" data-lucide="moon-star" aria-hidden="true"></i>
+          <i class="swap-off h-6 w-6 text-current" data-lucide="sun" aria-hidden="true"></i>
         </label>
       </div>
     </header>
@@ -370,41 +365,69 @@
 
     <script>
       (function () {
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
         const root = document.documentElement;
+        const body = document.body;
         const toggle = document.getElementById('theme-toggle');
+        const prefersDark = typeof window.matchMedia === 'function'
+          ? window.matchMedia('(prefers-color-scheme: dark)')
+          : null;
+        const STORAGE_KEY = 'kb-theme';
         const THEMES = { light: 'cupcake', dark: 'forest' };
 
+        function normalize(theme) {
+          return theme === 'dark' ? 'dark' : 'light';
+        }
+
         function applyTheme(theme) {
-          root.setAttribute('data-theme', THEMES[theme]);
-          document.body.classList.toggle('bg-base-200', theme === 'light');
-        }
-
-        function currentTheme() {
-          return localStorage.getItem('kb-theme') || (prefersDark.matches ? 'dark' : 'light');
-        }
-
-        function syncToggle(theme) {
-          toggle.checked = theme === 'dark';
-        }
-
-        const initialTheme = currentTheme();
-        applyTheme(initialTheme);
-        syncToggle(initialTheme);
-
-        toggle.addEventListener('change', () => {
-          const nextTheme = toggle.checked ? 'dark' : 'light';
-          applyTheme(nextTheme);
-          localStorage.setItem('kb-theme', nextTheme);
-        });
-
-        prefersDark.addEventListener('change', (event) => {
-          if (!localStorage.getItem('kb-theme')) {
-            const systemTheme = event.matches ? 'dark' : 'light';
-            applyTheme(systemTheme);
-            syncToggle(systemTheme);
+          const mode = normalize(theme);
+          const daisyTheme = THEMES[mode];
+          root.setAttribute('data-theme', daisyTheme);
+          body.classList.add('bg-base-200');
+          if (toggle) {
+            toggle.checked = mode === 'dark';
+            toggle.setAttribute('aria-label', mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
           }
-        });
+        }
+
+        function syncWithSystemPreference(event) {
+          if (!prefersDark) {
+            return;
+          }
+          const matches = typeof event?.matches === 'boolean' ? event.matches : prefersDark.matches;
+          if (!localStorage.getItem(STORAGE_KEY)) {
+            applyTheme(matches ? 'dark' : 'light');
+          }
+        }
+
+        function initialTheme() {
+          const stored = localStorage.getItem(STORAGE_KEY);
+          if (stored) {
+            return normalize(stored);
+          }
+          return prefersDark && prefersDark.matches ? 'dark' : 'light';
+        }
+
+        applyTheme(initialTheme());
+
+        if (toggle) {
+          toggle.addEventListener('change', () => {
+            const mode = toggle.checked ? 'dark' : 'light';
+            applyTheme(mode);
+            localStorage.setItem(STORAGE_KEY, mode);
+          });
+        }
+
+        if (prefersDark) {
+          if (typeof prefersDark.addEventListener === 'function') {
+            prefersDark.addEventListener('change', syncWithSystemPreference);
+          } else if (typeof prefersDark.addListener === 'function') {
+            prefersDark.addListener(syncWithSystemPreference);
+          }
+        }
+
+        if (window.lucide && typeof window.lucide.createIcons === 'function') {
+          window.lucide.createIcons();
+        }
       })();
     </script>
   </body>
