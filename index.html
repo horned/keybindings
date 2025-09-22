@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cupcake">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Key Bindings Reference | Neovim Essentials</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="min-h-screen bg-base-200 text-base-content transition-colors">
+    <header class="navbar bg-base-100/80 backdrop-blur sticky top-0 z-50">
+      <div class="navbar-start">
+        <div class="dropdown">
+          <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              fill="none"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </div>
+          <ul
+            tabindex="0"
+            class="menu menu-sm dropdown-content mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
+          >
+            <li><a href="#neovim">Neovim</a></li>
+            <li><a href="#resources">Resources</a></li>
+          </ul>
+        </div>
+        <a class="btn btn-ghost text-xl font-bold" href="#">Key Bindings Hub</a>
+      </div>
+      <div class="navbar-center hidden lg:flex">
+        <ul class="menu menu-horizontal px-1">
+          <li><a class="font-medium" href="#neovim">Neovim</a></li>
+          <li><a class="font-medium" href="#resources">Resources</a></li>
+        </ul>
+      </div>
+      <div class="navbar-end gap-2">
+        <label class="label hidden text-xs font-semibold uppercase tracking-wide md:block">
+          Theme
+        </label>
+        <label class="swap swap-rotate">
+          <input id="theme-toggle" type="checkbox" class="theme-controller" />
+          <svg class="swap-on h-6 w-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path
+              d="M5.64 17.66A9 9 0 0012 21a9 9 0 006.36-3.34A9 9 0 006.34 5.64 9 9 0 005.64 17.66z"
+            />
+          </svg>
+          <svg class="swap-off h-6 w-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path
+              d="M12 4.354a1 1 0 011-1h0a1 1 0 011 1V6a1 1 0 01-1 1h0a1 1 0 01-1-1zM12 17a1 1 0 011-1h0a1 1 0 011 1v1.646a1 1 0 01-1 1h0a1 1 0 01-1-1zM7.05 6.464a1 1 0 011.414 0l.879.88a1 1 0 010 1.414l-.88.879a1 1 0 01-1.414-1.414l.88-.88zM15.657 15.657a1 1 0 011.415 0l.879.88a1 1 0 010 1.414l-.88.879a1 1 0 01-1.414-1.414l.88-.88zM4.354 12a1 1 0 011-1H7a1 1 0 011 1h0a1 1 0 01-1 1H5.354a1 1 0 01-1-1zM17 11a1 1 0 011-1h1.646a1 1 0 011 1h0a1 1 0 01-1 1H18a1 1 0 01-1-1zM7.05 17.536a1 1 0 011.414 0l.879.879a1 1 0 01-1.414 1.415l-.88-.88a1 1 0 010-1.414zM15.657 8.343a1 1 0 011.415 0l.879.88a1 1 0 01-1.414 1.414l-.88-.88a1 1 0 010-1.414z"
+            />
+          </svg>
+        </label>
+      </div>
+    </header>
+
+    <main class="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 pb-16 pt-8" id="neovim">
+      <section class="hero rounded-box bg-gradient-to-r from-primary/10 to-secondary/10 p-6">
+        <div class="hero-content flex-col items-start gap-6 lg:flex-row">
+          <div class="max-w-xl">
+            <h1 class="text-4xl font-bold">Neovim Essentials</h1>
+            <p class="mt-4 text-lg opacity-80">
+              Quick reference for the most frequently used Neovim key bindings. Use the
+              categories below to find the commands you need faster, whether you are on desktop
+              or on the go.
+            </p>
+            <div class="mt-6 flex flex-wrap gap-2">
+              <a href="#movement" class="btn btn-sm btn-primary">Movement</a>
+              <a href="#editing" class="btn btn-sm btn-secondary">Editing</a>
+              <a href="#visual" class="btn btn-sm btn-info">Visual</a>
+              <a href="#windows" class="btn btn-sm btn-accent">Windows</a>
+              <a href="#search" class="btn btn-sm">Search</a>
+              <a href="#misc" class="btn btn-sm">Misc</a>
+            </div>
+          </div>
+          <div class="card w-full max-w-sm shrink-0 bg-base-100 shadow-lg">
+            <div class="card-body">
+              <h2 class="card-title">Tips</h2>
+              <ul class="list-disc space-y-2 pl-5 text-sm opacity-80">
+                <li>Most bindings assume normal mode. Tap <code>Esc</code> to exit insert mode.</li>
+                <li>Use <code>:</code> to enter command-line mode for commands like <code>:w</code> and <code>:q</code>.</li>
+                <li>Combine counts with motions (e.g. <code>3w</code>) to move faster.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="movement" class="scroll-mt-24">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl font-semibold">Movement</h2>
+          <span class="badge badge-neutral">Normal Mode</span>
+        </div>
+        <div class="grid gap-4 pt-4 md:grid-cols-2">
+          <div class="card bg-base-100 shadow">
+            <div class="card-body">
+              <h3 class="card-title">Cursor Basics</h3>
+              <div class="overflow-x-auto">
+                <table class="table">
+                  <tbody>
+                    <tr><td><code>h</code> / <code>j</code> / <code>k</code> / <code>l</code></td><td>Move left / down / up / right</td></tr>
+                    <tr><td><code>w</code> / <code>b</code></td><td>Move to next / previous word</td></tr>
+                    <tr><td><code>0</code> / <code>$</code></td><td>Line start / end</td></tr>
+                    <tr><td><code>gg</code> / <code>G</code></td><td>Go to top / bottom of file</td></tr>
+                    <tr><td><code>Ctrl+d</code> / <code>Ctrl+u</code></td><td>Half-page down / up</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="card bg-base-100 shadow">
+            <div class="card-body">
+              <h3 class="card-title">Find &amp; Navigate</h3>
+              <div class="overflow-x-auto">
+                <table class="table">
+                  <tbody>
+                    <tr><td><code>f</code><em>char</em> / <code>t</code><em>char</em></td><td>Find / till character on line</td></tr>
+                    <tr><td><code>;</code> / <code>,</code></td><td>Repeat last <code>f</code> / reverse</td></tr>
+                    <tr><td><code>%</code></td><td>Jump to matching bracket</td></tr>
+                    <tr><td><code>{</code> / <code>}</code></td><td>Previous / next paragraph</td></tr>
+                    <tr><td><code>zz</code></td><td>Center current line in viewport</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="editing" class="scroll-mt-24">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl font-semibold">Editing</h2>
+          <span class="badge badge-neutral">Normal &amp; Insert Modes</span>
+        </div>
+        <div class="grid gap-4 pt-4 md:grid-cols-2">
+          <div class="card bg-base-100 shadow">
+            <div class="card-body">
+              <h3 class="card-title">Insert &amp; Append</h3>
+              <div class="overflow-x-auto">
+                <table class="table">
+                  <tbody>
+                    <tr><td><code>i</code> / <code>I</code></td><td>Insert before cursor / line start</td></tr>
+                    <tr><td><code>a</code> / <code>A</code></td><td>Append after cursor / line end</td></tr>
+                    <tr><td><code>o</code> / <code>O</code></td><td>Open new line below / above</td></tr>
+                    <tr><td><code>Esc</code></td><td>Return to normal mode</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="card bg-base-100 shadow">
+            <div class="card-body">
+              <h3 class="card-title">Change &amp; Delete</h3>
+              <div class="overflow-x-auto">
+                <table class="table">
+                  <tbody>
+                    <tr><td><code>x</code> / <code>X</code></td><td>Delete char under / before cursor</td></tr>
+                    <tr><td><code>dd</code> / <code>D</code></td><td>Delete current line / to end</td></tr>
+                    <tr><td><code>cc</code> / <code>C</code></td><td>Change line / change to end</td></tr>
+                    <tr><td><code>yw</code> / <code>yy</code></td><td>Yank word / yank line</td></tr>
+                    <tr><td><code>p</code> / <code>P</code></td><td>Paste after / before cursor</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="visual" class="scroll-mt-24">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl font-semibold">Visual &amp; Selection</h2>
+          <span class="badge badge-neutral">Visual Modes</span>
+        </div>
+        <div class="grid gap-4 pt-4 md:grid-cols-2">
+          <div class="card bg-base-100 shadow">
+            <div class="card-body">
+              <h3 class="card-title">Visual Basics</h3>
+              <div class="overflow-x-auto">
+                <table class="table">
+                  <tbody>
+                    <tr><td><code>v</code> / <code>V</code></td><td>Character-wise / line-wise visual</td></tr>
+                    <tr><td><code>Ctrl+v</code></td><td>Block-wise visual mode</td></tr>
+                    <tr><td><code>o</code></td><td>Jump to other selection end</td></tr>
+                    <tr><td><code>&gt;</code> / <code>&lt;</code></td><td>Indent / outdent selection</td></tr>
+                    <tr><td><code>y</code> / <code>d</code></td><td>Yank / delete selection</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="card bg-base-100 shadow">
+            <div class="card-body">
+              <h3 class="card-title">Text Objects</h3>
+              <div class="overflow-x-auto">
+                <table class="table">
+                  <tbody>
+                    <tr><td><code>viw</code></td><td>Select inner word</td></tr>
+                    <tr><td><code>vi"</code></td><td>Select inside quotes</td></tr>
+                    <tr><td><code>va(</code></td><td>Select around parentheses</td></tr>
+                    <tr><td><code>vip</code></td><td>Select inner paragraph</td></tr>
+                    <tr><td><code>v%</code></td><td>Select to matching bracket</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="windows" class="scroll-mt-24">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl font-semibold">Windows &amp; Tabs</h2>
+          <span class="badge badge-neutral">Normal Mode</span>
+        </div>
+        <div class="grid gap-4 pt-4 md:grid-cols-2">
+          <div class="card bg-base-100 shadow">
+            <div class="card-body">
+              <h3 class="card-title">Splits</h3>
+              <div class="overflow-x-auto">
+                <table class="table">
+                  <tbody>
+                    <tr><td><code>:vs</code> / <code>:sp</code></td><td>Vertical / horizontal split</td></tr>
+                    <tr><td><code>Ctrl+w</code> <code>w</code></td><td>Cycle through windows</td></tr>
+                    <tr><td><code>Ctrl+w</code> <code>h/j/k/l</code></td><td>Move to window left/down/up/right</td></tr>
+                    <tr><td><code>Ctrl+w</code> <code>=</code></td><td>Equalize split sizes</td></tr>
+                    <tr><td><code>Ctrl+w</code> <code>q</code></td><td>Close current window</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="card bg-base-100 shadow">
+            <div class="card-body">
+              <h3 class="card-title">Tabs &amp; Buffers</h3>
+              <div class="overflow-x-auto">
+                <table class="table">
+                  <tbody>
+                    <tr><td><code>:tabnew</code></td><td>Open new tab</td></tr>
+                    <tr><td><code>gt</code> / <code>gT</code></td><td>Next / previous tab</td></tr>
+                    <tr><td><code>:bnext</code> / <code>:bprev</code></td><td>Next / previous buffer</td></tr>
+                    <tr><td><code>:ls</code></td><td>List open buffers</td></tr>
+                    <tr><td><code>:bd</code></td><td>Close current buffer</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="search" class="scroll-mt-24">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl font-semibold">Search &amp; Replace</h2>
+          <span class="badge badge-neutral">Normal &amp; Command Modes</span>
+        </div>
+        <div class="grid gap-4 pt-4 md:grid-cols-2">
+          <div class="card bg-base-100 shadow">
+            <div class="card-body">
+              <h3 class="card-title">Search</h3>
+              <div class="overflow-x-auto">
+                <table class="table">
+                  <tbody>
+                    <tr><td><code>/pattern</code> / <code>?pattern</code></td><td>Search forward / backward</td></tr>
+                    <tr><td><code>n</code> / <code>N</code></td><td>Next / previous match</td></tr>
+                    <tr><td><code>*</code> / <code>#</code></td><td>Search word under cursor forward / backward</td></tr>
+                    <tr><td><code>gd</code></td><td>Go to definition (within buffer)</td></tr>
+                    <tr><td><code>Ctrl+o</code> / <code>Ctrl+i</code></td><td>Older / newer jump</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="card bg-base-100 shadow">
+            <div class="card-body">
+              <h3 class="card-title">Replace</h3>
+              <div class="overflow-x-auto">
+                <table class="table">
+                  <tbody>
+                    <tr><td><code>:s/old/new/</code></td><td>Replace first match on line</td></tr>
+                    <tr><td><code>:s/old/new/g</code></td><td>Replace all matches on line</td></tr>
+                    <tr><td><code>:%s/old/new/g</code></td><td>Replace whole file</td></tr>
+                    <tr><td><code>:%s/old/new/gc</code></td><td>Replace whole file with confirm</td></tr>
+                    <tr><td><code>:noh</code></td><td>Clear highlight</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="misc" class="scroll-mt-24">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl font-semibold">File &amp; Miscellaneous</h2>
+          <span class="badge badge-neutral">Mixed Modes</span>
+        </div>
+        <div class="grid gap-4 pt-4 md:grid-cols-2">
+          <div class="card bg-base-100 shadow">
+            <div class="card-body">
+              <h3 class="card-title">Files &amp; Sessions</h3>
+              <div class="overflow-x-auto">
+                <table class="table">
+                  <tbody>
+                    <tr><td><code>:w</code> / <code>:wa</code></td><td>Write current / all buffers</td></tr>
+                    <tr><td><code>:q</code> / <code>:qa</code></td><td>Quit current / all buffers</td></tr>
+                    <tr><td><code>:wq</code> / <code>ZZ</code></td><td>Write and quit</td></tr>
+                    <tr><td><code>:e file</code></td><td>Edit file</td></tr>
+                    <tr><td><code>:source %</code></td><td>Reload current file</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="card bg-base-100 shadow">
+            <div class="card-body">
+              <h3 class="card-title">Registers &amp; Macros</h3>
+              <div class="overflow-x-auto">
+                <table class="table">
+                  <tbody>
+                    <tr><td><code>"xy</code> / <code>"xp</code></td><td>Yank / paste into register x</td></tr>
+                    <tr><td><code>"+y</code> / <code>"+p</code></td><td>Use system clipboard</td></tr>
+                    <tr><td><code>q</code><em>letter</em></td><td>Start recording macro</td></tr>
+                    <tr><td><code>q</code></td><td>Stop recording</td></tr>
+                    <tr><td><code>@</code><em>letter</em> / <code>@@</code></td><td>Play macro / repeat last</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="resources" class="bg-base-100 py-10">
+      <div class="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 md:flex-row md:items-center md:justify-between">
+        <div>
+          <h3 class="text-xl font-semibold">Keep Exploring</h3>
+          <p class="text-sm opacity-70">
+            More editors and tools are coming soon. Bookmark this page for quick access to your
+            favorite key maps.
+          </p>
+        </div>
+        <div class="join">
+          <a class="btn join-item" href="https://neovim.io" target="_blank" rel="noreferrer">
+            Neovim Docs
+          </a>
+          <a class="btn join-item" href="https://vimhelp.org" target="_blank" rel="noreferrer">
+            Vim Help
+          </a>
+          <a class="btn join-item" href="https://github.com/rockerBOO/awesome-neovim" target="_blank" rel="noreferrer">
+            Awesome Neovim
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+        const root = document.documentElement;
+        const toggle = document.getElementById('theme-toggle');
+        const THEMES = { light: 'cupcake', dark: 'forest' };
+
+        function applyTheme(theme) {
+          root.setAttribute('data-theme', THEMES[theme]);
+          document.body.classList.toggle('bg-base-200', theme === 'light');
+        }
+
+        function currentTheme() {
+          return localStorage.getItem('kb-theme') || (prefersDark.matches ? 'dark' : 'light');
+        }
+
+        function syncToggle(theme) {
+          toggle.checked = theme === 'dark';
+        }
+
+        const initialTheme = currentTheme();
+        applyTheme(initialTheme);
+        syncToggle(initialTheme);
+
+        toggle.addEventListener('change', () => {
+          const nextTheme = toggle.checked ? 'dark' : 'light';
+          applyTheme(nextTheme);
+          localStorage.setItem('kb-theme', nextTheme);
+        });
+
+        prefersDark.addEventListener('change', (event) => {
+          if (!localStorage.getItem('kb-theme')) {
+            const systemTheme = event.matches ? 'dark' : 'light';
+            applyTheme(systemTheme);
+            syncToggle(systemTheme);
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
