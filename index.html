@@ -37,6 +37,8 @@
           >
             <li><a href="#neovim">Neovim</a></li>
             <li><a href="#lunarvim">LunarVim</a></li>
+            <li><a href="#lazygit">Lazygit</a></li>
+            <li><a href="#lazydocker">Lazydocker</a></li>
             <li><a href="#tmux">tmux</a></li>
             <li><a href="#resources">Resources</a></li>
           </ul>
@@ -47,6 +49,8 @@
         <ul class="menu menu-horizontal px-1">
           <li><a class="font-medium" href="#neovim">Neovim</a></li>
           <li><a class="font-medium" href="#lunarvim">LunarVim</a></li>
+          <li><a class="font-medium" href="#lazygit">Lazygit</a></li>
+          <li><a class="font-medium" href="#lazydocker">Lazydocker</a></li>
           <li><a class="font-medium" href="#tmux">tmux</a></li>
           <li><a class="font-medium" href="#resources">Resources</a></li>
         </ul>
@@ -424,6 +428,171 @@
                     <tr><td><code>&lt;leader&gt;qq</code></td><td>Quit LunarVim session</td></tr>
                     <tr><td><code>&lt;leader&gt;lI</code></td><td>Install configured plugins</td></tr>
                     <tr><td><code>&lt;leader&gt;lR</code></td><td>Reload <code>config.lua</code></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="lazygit" class="hero rounded-box bg-gradient-to-r from-warning/10 to-error/10 p-6">
+        <div class="hero-content flex-col items-start gap-6 lg:flex-row">
+          <div class="max-w-xl">
+            <h1 class="text-4xl font-bold">Lazygit Essentials</h1>
+            <p class="mt-4 text-lg opacity-80">Use the status panel to stage with confidence, then jump between views with a single key. The shortcuts below assume the default Lazygit configuration.</p>
+            <div class="mt-6 flex flex-wrap gap-2">
+              <a href="#lazygit-staging" class="btn btn-sm btn-warning">Stage &amp; Commit</a>
+              <a href="#lazygit-navigation" class="btn btn-sm btn-error">Navigation</a>
+              <a href="#lazygit-workflows" class="btn btn-sm btn-neutral">Workflows</a>
+            </div>
+          </div>
+          <div class="card w-full max-w-sm shrink-0 bg-base-100 shadow-lg">
+            <div class="card-body">
+              <h2 class="card-title">Tips</h2>
+              <ul class="list-disc space-y-2 pl-5 text-sm opacity-80">
+                <li>Press <code>?</code> anywhere to reveal Lazygit's built-in help overlay.</li>
+                <li><code>Tab</code> cycles main panels; <code>Shift+Tab</code> reverses.</li>
+                <li>Use <code>o</code> to open a file in your editor without leaving Lazygit.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="lazygit-shortcuts" class="scroll-mt-24">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl font-semibold">Lazygit Shortcuts</h2>
+          <span class="badge badge-neutral">Default bindings</span>
+        </div>
+        <p class="mt-2 text-sm opacity-80">Most actions respond to single keys. Focus a panel, press the key, and confirm prompts with <code>Enter</code>.</p>
+        <div class="grid gap-4 pt-4 md:grid-cols-2">
+          <div id="lazygit-staging" class="card bg-base-100 shadow">
+            <div class="card-body">
+              <h3 class="card-title">Stage &amp; Commit</h3>
+              <div class="overflow-x-auto">
+                <table class="table">
+                  <tbody>
+                    <tr><td><code>Space</code></td><td>Stage / unstage highlighted file or hunk</td></tr>
+                    <tr><td><code>Shift+S</code></td><td>Stage entire directory</td></tr>
+                    <tr><td><code>u</code></td><td>Unstage latest change</td></tr>
+                    <tr><td><code>c</code></td><td>Open commit message popup</td></tr>
+                    <tr><td><code>Ctrl+s</code></td><td>Save commit message</td></tr>
+                    <tr><td><code>Ctrl+c</code></td><td>Abort commit popup</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div id="lazygit-navigation" class="card bg-base-100 shadow">
+            <div class="card-body">
+              <h3 class="card-title">Navigation</h3>
+              <div class="overflow-x-auto">
+                <table class="table">
+                  <tbody>
+                    <tr><td><code>Tab</code> / <code>Shift+Tab</code></td><td>Move forward / back between panels</td></tr>
+                    <tr><td><code>h</code> / <code>l</code></td><td>Collapse / expand nested lists</td></tr>
+                    <tr><td><code>pgup</code> / <code>pgdn</code></td><td>Scroll lists faster</td></tr>
+                    <tr><td><code>o</code></td><td>Open file in external editor</td></tr>
+                    <tr><td><code>Ctrl+p</code></td><td>Quick switch to recent branch</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div id="lazygit-workflows" class="card bg-base-100 shadow md:col-span-2">
+            <div class="card-body">
+              <h3 class="card-title">Workflows</h3>
+              <div class="overflow-x-auto">
+                <table class="table">
+                  <tbody>
+                    <tr><td><code>p</code> / <code>P</code></td><td>Pull / push current branch</td></tr>
+                    <tr><td><code>f</code></td><td>Fetch all remotes</td></tr>
+                    <tr><td><code>Shift+R</code></td><td>Rebase current branch onto tracked remote</td></tr>
+                    <tr><td><code>Shift+D</code></td><td>View diff of selected file against HEAD</td></tr>
+                    <tr><td><code>x</code></td><td>Discard selected change (with confirmation)</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="lazydocker" class="hero rounded-box bg-gradient-to-r from-info/10 to-accent/20 p-6">
+        <div class="hero-content flex-col items-start gap-6 lg:flex-row">
+          <div class="max-w-xl">
+            <h1 class="text-4xl font-bold">Lazydocker Essentials</h1>
+            <p class="mt-4 text-lg opacity-80">Monitor containers, services, and logs from your terminal dashboard. The keys mirror Lazygit's ergonomics.</p>
+            <div class="mt-6 flex flex-wrap gap-2">
+              <a href="#lazydocker-containers" class="btn btn-sm btn-info">Containers</a>
+              <a href="#lazydocker-logs" class="btn btn-sm btn-primary">Logs &amp; Exec</a>
+              <a href="#lazydocker-views" class="btn btn-sm btn-secondary">Views &amp; Actions</a>
+            </div>
+          </div>
+          <div class="card w-full max-w-sm shrink-0 bg-base-100 shadow-lg">
+            <div class="card-body">
+              <h2 class="card-title">Tips</h2>
+              <ul class="list-disc space-y-2 pl-5 text-sm opacity-80">
+                <li><code>?</code> shows the full key map, just like Lazygit.</li>
+                <li>Targets follow the highlighted row; confirm destructive actions with <code>Enter</code>.</li>
+                <li>Enable live log tailing with <code>l</code> to keep an eye on container output.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="lazydocker-shortcuts" class="scroll-mt-24">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl font-semibold">Lazydocker Shortcuts</h2>
+          <span class="badge badge-neutral">Default bindings</span>
+        </div>
+        <p class="mt-2 text-sm opacity-80">Focus the left navigation, choose a resource, then use the context keys below to inspect and manage it.</p>
+        <div class="grid gap-4 pt-4 md:grid-cols-2">
+          <div id="lazydocker-containers" class="card bg-base-100 shadow">
+            <div class="card-body">
+              <h3 class="card-title">Containers &amp; Services</h3>
+              <div class="overflow-x-auto">
+                <table class="table">
+                  <tbody>
+                    <tr><td><code>Tab</code> / <code>Shift+Tab</code></td><td>Cycle navigation columns</td></tr>
+                    <tr><td><code>Enter</code></td><td>Expand selected container or service</td></tr>
+                    <tr><td><code>s</code> / <code>S</code></td><td>Start / stop container</td></tr>
+                    <tr><td><code>r</code></td><td>Restart container</td></tr>
+                    <tr><td><code>X</code></td><td>Remove container or prune dangling resources</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div id="lazydocker-logs" class="card bg-base-100 shadow">
+            <div class="card-body">
+              <h3 class="card-title">Logs &amp; Exec</h3>
+              <div class="overflow-x-auto">
+                <table class="table">
+                  <tbody>
+                    <tr><td><code>l</code></td><td>Toggle live log tail for selected container</td></tr>
+                    <tr><td><code>o</code></td><td>Open logs in external pager</td></tr>
+                    <tr><td><code>e</code></td><td>Exec into container shell</td></tr>
+                    <tr><td><code>t</code></td><td>View top stats for container</td></tr>
+                    <tr><td><code>Ctrl+l</code></td><td>Clear current log view</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div id="lazydocker-views" class="card bg-base-100 shadow md:col-span-2">
+            <div class="card-body">
+              <h3 class="card-title">Views &amp; Actions</h3>
+              <div class="overflow-x-auto">
+                <table class="table">
+                  <tbody>
+                    <tr><td><code>Ctrl+r</code></td><td>Refresh Docker context</td></tr>
+                    <tr><td><code>p</code></td><td>Switch to projects view</td></tr>
+                    <tr><td><code>Shift+F</code></td><td>Filter resources (by name or state)</td></tr>
+                    <tr><td><code>Ctrl+f</code></td><td>Search within current list or logs</td></tr>
+                    <tr><td><code>q</code></td><td>Close popups or back out one level</td></tr>
                   </tbody>
                 </table>
               </div>
