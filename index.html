@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="cupcake">
+<html lang="en" data-theme="mocha">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,6 +10,11 @@
       type="text/css"
     />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      href="https://cdn.jsdelivr.net/combine/npm/@catppuccin/daisyui@2/latte.css,npm/@catppuccin/daisyui@2/mocha.css"
+      rel="stylesheet"
+      type="text/css"
+    />
   </head>
   <body class="min-h-screen bg-base-200 text-base-content transition-colors">
     <header class="navbar bg-base-100/80 backdrop-blur sticky top-0 z-50">
@@ -43,9 +48,12 @@
             <li><a href="#resources">Resources</a></li>
           </ul>
         </div>
-        <a class="btn btn-ghost text-xl font-bold" href="#">Key Bindings Hub</a>
+        <a class="btn btn-ghost text-xl font-bold" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-keyboard-icon lucide-keyboard"><path d="M10 8h.01"/><path d="M12 12h.01"/><path d="M14 8h.01"/><path d="M16 12h.01"/><path d="M18 8h.01"/><path d="M6 8h.01"/><path d="M7 16h10"/><path d="M8 12h.01"/><rect width="20" height="16" x="2" y="4" rx="2"/></svg>
+          Key Bindings Hub
+        </a>
       </div>
-      <div class="navbar-center hidden lg:flex">
+      <div class="navbar-end hidden lg:flex">
         <ul class="menu menu-horizontal px-1">
           <li><a class="font-medium" href="#neovim">Neovim</a></li>
           <li><a class="font-medium" href="#lunarvim">LunarVim</a></li>
